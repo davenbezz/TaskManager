@@ -8,6 +8,10 @@ const taskList = document.querySelector('.collection');          //The ul
 
 const clearBtn = document.querySelector('.clear-tasks');      //the all task clear button
 
+const reloadBtn = document.querySelector('.fa'); // the reload button
+
+const query = document.querySelectorAll('.collection'); //      I've used querySelectorAll for .collection
+
 // Add Event Listener  [Form , clearBtn and filter search input ]
 
 // form submit 
@@ -18,6 +22,10 @@ clearBtn.addEventListener('click', clearAllTasks);
 
 //   Filter Task 
 filter.addEventListener('keyup', filterTasks);
+// remove task event
+taskList.addEventListener('click', removeTask);
+// reload the page from the reload button
+reloadBtn.addEventListener('click', reloadPage);
 
 
 
@@ -55,9 +63,16 @@ function clearAllTasks(){
         taskList.removeChild(taskList.firstChild);
     }
 }
-function filterTasks(e) {
-    console.log("Typing...");
-
+function filterTasks() {
+    let key = document.getElementById('filter').value;
+    for(let i = 0; i < query.length; i++){
+        console.log((new RegExp(key)).test(query[i].textContent));
+        if((new RegExp(key)).test(query[i].textContent)){
+            console.log(query[i]);
+    }else{
+        query[i].textContent.big();
+    }
+    }
 }
 // Remove Task function definition 
 function removeTask(e) {
@@ -68,7 +83,9 @@ function removeTask(e) {
         {
             e.target.parentElement.parentElement.remove();
         }
-
     }
-
+}
+function reloadPage(d){
+    d.preventDefault();
+    location.reload();
 }
