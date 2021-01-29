@@ -10,7 +10,9 @@ const clearBtn = document.querySelector('.clear-tasks');      //the all task cle
 
 const reloadBtn = document.querySelector('.fa'); // the reload button
 
-const query = document.querySelectorAll('.collection'); //      I've used querySelectorAll for .collection
+const query = document.querySelector('.collection'); //      I've used querySelector for the .collection
+
+const allLi = query.getElementsByTagName('li'); //I've used by TagName method to identify every collection-item
 
 // Add Event Listener  [Form , clearBtn and filter search input ]
 
@@ -63,15 +65,16 @@ function clearAllTasks(){
         taskList.removeChild(taskList.firstChild);
     }
 }
+
+//making the filter function
 function filterTasks() {
-    let key = document.getElementById('filter').value;
-    for(let i = 0; i < query.length; i++){
-        console.log((new RegExp(key)).test(query[i].textContent));
-        if((new RegExp(key)).test(query[i].textContent)){
-            console.log(query[i]);
-    }else{
-        query[i].textContent.big();
-    }
+    let key = document.getElementById('filter').value; //key now has the filtered value
+    for(let i = 0; i<allLi.length; i++){
+        if((new RegExp(key)).test(allLi[i].textContent)){
+            allLi[i].style.display = "";
+        }else{
+            allLi[i].style.display = "none";
+        }
     }
 }
 // Remove Task function definition 

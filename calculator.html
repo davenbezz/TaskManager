@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript GUI Calculator</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/calculator.css">
+    <script>
+        function addition(){
+            var myDiv = document.getElementById("numbers");
+                var button = document.createElement('BUTTON');
+                var text = document.createTextNode("1");
+                button.appendChild(text);
+                myDiv.appendChild(button); 
+        }
+    </script>
+</head>
+<body>
+    <div id="calculator">
+        <div id="display">
+            <input type="text" id="display_input">
+        </div>
+        <div id="functions">
+            <input type="button" onclick="addition()" value="+" class="btn btn-dark btn-lg">
+            <input type="button" onclick="" value="-" class="btn btn-dark btn-lg">
+            <input type="button" onclick="" value="*" class="btn btn-dark btn-lg">
+            <input type="button" onclick="" value="/" class="btn btn-dark btn-lg">
+            <input type="button" onclick="" value="pwr" class="btn btn-dark btn-lg">
+            <input type="button" onclick="" value="sqr" class="btn btn-dark btn-lg">
+        </div>
+        <div id="numbers">
+
+        </div>
+    </div>
+
+
+    <script src="./assets/js/jquery-3.5.1.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+</body>
+</html>
