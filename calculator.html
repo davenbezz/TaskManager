@@ -5,15 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript GUI Calculator</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/calculator.css">
     <script>
-        function addition(){
-            var myDiv = document.getElementById("numbers");
-                var button = document.createElement('BUTTON');
-                var text = document.createTextNode("1");
-                button.appendChild(text);
-                myDiv.appendChild(button); 
-        }
     </script>
 </head>
 <body>
@@ -22,19 +16,45 @@
             <input type="text" id="display_input">
         </div>
         <div id="functions">
-            <input type="button" onclick="addition()" value="+" class="btn btn-dark btn-lg">
-            <input type="button" onclick="" value="-" class="btn btn-dark btn-lg">
-            <input type="button" onclick="" value="*" class="btn btn-dark btn-lg">
-            <input type="button" onclick="" value="/" class="btn btn-dark btn-lg">
-            <input type="button" onclick="" value="pwr" class="btn btn-dark btn-lg">
-            <input type="button" onclick="" value="sqr" class="btn btn-dark btn-lg">
+            <input type="button" onclick="addition()" value="+" class="btn btn-dark btn-lg" id="addButton">
+            <input type="button" onclick="" value="-" class="btn btn-dark btn-lg" id="subtractButton">
+            <input type="button" onclick="" value="x" class="btn btn-dark btn-lg" id="multiplyButton">
+            <input type="button" onclick="" value="/" class="btn btn-dark btn-lg" id="divideButton">
+            <input type="button" onclick="" value="^" class="btn btn-dark btn-lg" id="powerButton">
         </div>
-        <div id="numbers">
-
+        <div class="row">
+            <div class="col-md-8" id="numbers">
+                <div>
+                    <button class="btn btn-secondary btn-lg" id="nine">9</button>
+                    <button class="btn btn-secondary btn-lg" id="eight">8</button>
+                    <button class="btn btn-secondary btn-lg" id="seven">7</button>
+                </div>
+                <div>
+                    <button class="btn btn-secondary btn-lg" id="six">6</button>
+                    <button class="btn btn-secondary btn-lg" id="five">5</button>
+                    <button class="btn btn-secondary btn-lg" id="four">4</button>
+                </div>
+                <div>
+                    <button class="btn btn-secondary btn-lg" id="three">3</button>
+                    <button class="btn btn-secondary btn-lg" id="two">2</button>
+                    <button class="btn btn-secondary btn-lg" id="one">1</button>
+                </div>
+                <div>
+                    <button class="btn btn-dark btn-lg" id="CE">CE</button>
+                    <button class="btn btn-secondary btn-lg" id="zero">0</button>
+                    <button class="btn btn-dark btn-lg" id="backspace">
+                        <i class="fa fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-warning btn-lg" id="equalButton">=</button>
+            </div>
         </div>
     </div>
 
 
+    <script src="./assets/js/calculator.js"></script>
     <script src="./assets/js/jquery-3.5.1.min.js"></script>
     <script src="./assets/js/bootstrap.min.js"></script>
 </body>

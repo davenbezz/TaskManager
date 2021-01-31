@@ -1,7 +1,7 @@
 #calculator{
     width: 30rem;
     height: 30rem;
-    background-color: brown;
+    background-image: linear-gradient(#eee, #ddd);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -10,12 +10,13 @@
 #display{
     width: 100%;
     height: 5rem;
-    background-color: #f0f;
 }
 #display_input{
+    background-color: #b3ffb3;
     width: 100%;
     height: 100%;
     font-size: 2rem;
+    font-size: 72px;
 }
 #display_input:hover{
     box-shadow: 0.3px 0.3px 0.3px 0.3px #00f;
@@ -27,4 +28,19 @@
 #functions > input{
     flex: auto;
     margin: 0.4rem;
+}
+#numbers > div{
+    display: flex;
+    flex-wrap: wrap;
+}
+#numbers > div > button{
+    flex: auto;
+    margin: 1rem;
+}
+#equalButton{
+    height: 100%;
+    width: 100%;
+    background-color: #FFA500;
+    font-size: 4rem;
+    color: #fff;
 }
