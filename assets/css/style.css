@@ -1,3 +1,11 @@
 i {
     color: red;
 }
+#dropd{
+    background-image: linear-gradient(black, red);
+}
+#dropdown1{
+    border-radius: 0rem 0rem 3rem 3rem;
+    background-image: linear-gradient(rgb(58, 8, 8), red);
+    color: #fff;
+}
