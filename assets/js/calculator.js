@@ -9,14 +9,17 @@ const six = document.getElementById('six');
 const seven = document.getElementById('seven');
 const eight = document.getElementById('eight');
 const nine = document.getElementById('nine');
-const add = document.getElementById('addButton');
-const subtract = document.getElementById('subtractButton');
-const multiply = document.getElementById('multiplyButton');
-const divide = document.getElementById('divideButton');
-const power = document.getElementById('powerButton');
+const addButton = document.getElementById('addButton');
+const subtractButton = document.getElementById('subtractButton');
+const multiplyButton = document.getElementById('multiplyButton');
+const divideButton = document.getElementById('divideButton');
+const powerButton = document.getElementById('powerButton');
+const dot = document.getElementById('dotButton');
+const sqrtButton = document.getElementById('sqrtButton');
 const CE = document.getElementById('CE');
 const backspace = document.getElementById('backspace');
 let display = document.getElementById('display_input');
+const equal = document.getElementById('equalButton');
 
 
 
@@ -51,18 +54,119 @@ eight.onclick = function(){
 nine.onclick = function(){
     display.value = display.value + 9;    
 }
-add.onclick = function(){
+addButton.onclick = function(){
     display.value = display.value + '+';    
 }
-subtract.onclick = function(){
+subtractButton.onclick = function(){
     display.value = display.value + '-';    
 }
-multiply.onclick = function(){
+multiplyButton.onclick = function(){
     display.value = display.value + 'x';    
 }
-divide.onclick = function(){
+divideButton.onclick = function(){
     display.value = display.value + '/';    
 }
-power.onclick = function(){
+powerButton.onclick = function(){
     display.value = display.value + '^';    
+}
+sqrtButton.onclick = function(){
+    display.value = display.value + '√';
+}
+dot.onclick = function(){
+    display.value = display.value + '.';
+}
+CE.onclick = function(){
+    display.style = "font-size: 5rem;"
+    display.value = '';
+}
+backspace.onclick = function(){
+    display.value = display.value.substring(0, display.value.length - 1);
+}
+//Evaluate Functions
+function add(val) {
+    let result = 0;
+    const numbers = val.split('+');
+    numbers.forEach(number => {
+        result += parseFloat(number);
+    });
+    display.value = result;
+    return result;
+}
+function multiply(val) {
+    let result = 1;
+    const numbers = val.split('x');
+    numbers.forEach(number => {
+        result *= parseFloat(number);
+    });
+    display.value = result;
+    return result;
+}
+function subtract(val){
+    const numbers = val.split('-');
+    let result = numbers.shift();
+    numbers.forEach(number => {
+        result -= parseFloat(number);
+    });
+    display.value = result;
+    return result;
+}
+
+function divide(val){
+    let work = true;
+    function isTrue(val){
+        numbers = val.split('/');
+        numbers.shift();
+        numbers.forEach(number =>{
+            if(number == '0'){
+                work = false;
+            }
+        });
+    }
+    isTrue(val);
+    if(work){
+        numbers = val.split('/');
+        let result = parseFloat(numbers.shift());
+        numbers.forEach(number => {
+            result /= parseFloat(number);
+        });
+        display.value = result;
+        return result;
+    }else{
+        display.style = "font-size: 2rem;"
+        display.value = 'Please enter a valid denominator!';
+        return 'Please enter a valid denominator.';
+    }
+}
+function sqrt(val){
+    val = val.substring(1);
+    display.value = (Math.sqrt(val));
+}
+
+
+
+
+
+
+//The Equal Button's work
+
+equal.onclick = function(){
+    console.log('equal button clicked');
+    key = display.value.toString();
+    console.log(key);
+    if((new RegExp('\\+')).test(key)){
+        console.log(add(key));
+    }else if((new RegExp('\\-')).test(key)){
+        subtract(key);
+    }else if((new RegExp('x')).test(key)){
+        multiply(key);
+    }else if((new RegExp('\\/')).test(key)){
+        divide(key);
+    }else if((new RegExp('\\^')).test(key)){
+        divide(key);
+    }else if((new RegExp('√')).test(key)){
+        sqrt(key);
+    }
+    else{
+        console.log('false');
+    }
 }

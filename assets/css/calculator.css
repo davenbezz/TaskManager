@@ -38,9 +38,17 @@
     margin: 1rem;
 }
 #equalButton{
-    height: 100%;
+    height: 80%;
     width: 100%;
     background-color: #FFA500;
     font-size: 4rem;
     color: #fff;
+}
+#dotsqrt{
+    display: flex;
+    flex-wrap: wrap;
+}
+#dotsqrt > input{
+    flex: auto;
+    margin: 0.1rem;
 }
