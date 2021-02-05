@@ -20,6 +20,7 @@ let DB;
 // Add Event Listener [on Load]
 document.addEventListener('DOMContentLoaded', () => {
   function displayTaskList() {
+    filter.addEventListener('keyup', filterTasks);
     // clear the previous task list
     while (taskList.firstChild) {   taskList.removeChild(taskList.firstChild);}
   
@@ -38,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const dateID = Date.now();
             const link = document.createElement('a');
             link.className = "delete-item secondary-content";
-            link.innerHTML = '<i class="fa fa-remove"></i>';
+            // link.innerHTML = '<i class="fa fa-remove"></i>';
+            link.innerHTML = '<i class="fa fa-remove"></i>  &nbsp; <a href="edit.html?id=${cursor.value.id}"><i class="fa fa-edit"></i> </a>';
             const dateDiv = document.createElement("div");
             dateDiv.className = "dateDiv";
             dateDiv.style.display = "none";
@@ -85,6 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
 form.addEventListener('submit', addNewTask);
 function addNewTask(e) {  
   e.preventDefault();
+  if(taskInput.value === ''){
+    taskInput.style.borderColor = 'red';
+    return;}
+    taskInput.style.borderColor = 'green';
   //add to DB
  // create a new object with the form info
  let newTask = {
@@ -98,13 +104,13 @@ let request = objectStore.add(newTask);
 // on success
 request.onsuccess = () => {
   form.reset();
-  //displayTaskList();
+  displayTaskList();
   
 
 }
 transaction.oncomplete = () => {
   console.log('New appointment added');
-  displayTaskList();
+  //displayTaskList();
 }
 transaction.onerror = () => { console.log('There was an error, try again!'); }
 
@@ -133,9 +139,21 @@ transaction.onerror = () => { console.log('There was an error, try again!'); }
          }
      }
  }
+ //making the filter function
+function filterTasks() {
+  let key = document.getElementById('filter').value; //key now has the filtered value
+  for(let i = 0; i<allLi.length; i++){
+      if((new RegExp(key)).test(allLi[i].textContent)){
+          allLi[i].style.display = "";
+      }else{
+          allLi[i].style.display = "none";
+      }
+  }
+}
  clearBtn.addEventListener('click', clearAllTasks);
     //clear tasks 
     function clearAllTasks() {
+      if(confirm("Are you sure you want to clear all tasks?")){
         //Create the transaction and object store
         let transaction = DB.transaction("tasks", "readwrite"); 
         let tasks = transaction.objectStore("tasks");
@@ -146,6 +164,7 @@ transaction.onerror = () => { console.log('There was an error, try again!'); }
         displayTaskList();
 
         console.log("Tasks Cleared !!!");
+      }
     }
     $(".dropdown-trigger").dropdown();
     const ascendingBtn = document.querySelector(".ascending-btn");
